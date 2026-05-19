@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id             String    @id @default(uuid())
+  title          String
+  description    String?
+  type           String
+  status         String    @default("pending")
+  estimated_time Int       @default(25)
+  actual_time    Float     @default(0)
+  is_infinite    Boolean   @default(false)
+  extension_count Int      @default(0)
+  started_at      DateTime?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  sessions       Session[]
+
+  @@index([status])
+  @@index([created_at])
+}
+
+model Session {
+  id        String    @id @default(uuid())
+  task_id   String
+  task      Task      @relation(fields: [task_id], references: [id], onDelete: Cascade)
+  start_time DateTime
+  end_time  DateTime?
+  duration  Float     @default(0)
+
+  @@index([task_id])
+  @@index([start_time])
+  @@index([end_time])
+}
+
+model SystemState {
+  id                    Int     @id @default(autoincrement())
+  current_active_task_id String?
+  mode                  String  @default("parallel")
+  suppressed_notifications Boolean @default(false)
+  created_at            DateTime @default(now())
+  updated_at            DateTime @updatedAt
+
+  @@unique([id])
+}

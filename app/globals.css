@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #1a1714;
+  --ink-soft: #4a4540;
+  --ink-faint: #8a8480;
+  --rice: #f7f4ee;
+  --rice-deep: #ede9e0;
+  --rice-medium: #e2ddd4;
+  --washi: #f0ece4;
+  --indigo: #2c3e6b;
+  --indigo-soft: #4a5fa0;
+  --indigo-pale: #eaecf4;
+  --matcha: #4a7c59;
+  --matcha-pale: #e8f0eb;
+  --vermilion: #c0392b;
+  --vermilion-pale: #fae9e7;
+  --border: rgba(60, 50, 40, 0.12);
+  --border-strong: rgba(60, 50, 40, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--rice);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-serif {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.font-mono {
+  font-variant-numeric: tabular-nums;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}
+
+@layer components {
+  .zen-input {
+    background: var(--rice);
+    border: 1px solid var(--border-strong);
+    border-radius: 3px;
+    padding: 10px 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    font-size: 14px;
+  }
+  
+  .zen-input:focus {
+    border-color: var(--indigo-soft);
+  }
+  
+  .zen-input::placeholder {
+    color: var(--ink-faint);
+  }
+
+  .zen-btn {
+    border-radius: 3px;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.18s;
+    border: 1px solid transparent;
+  }
+
+  .zen-btn-primary {
+    background: var(--indigo);
+    color: #e8eaf0;
+  }
+
+  .zen-btn-primary:hover {
+    background: var(--indigo-soft);
+  }
+
+  .zen-btn-secondary {
+    background: var(--rice);
+    color: var(--ink-soft);
+    border-color: var(--border-strong);
+  }
+
+  .zen-btn-secondary:hover {
+    background: var(--rice-deep);
+  }
+
+  .zen-btn-success {
+    background: var(--matcha-pale);
+    color: var(--matcha);
+    border-color: var(--matcha);
+  }
+
+  .zen-btn-success:hover {
+    background: var(--matcha);
+    color: white;
+  }
+
+  .zen-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 18px;
+    transition: all 0.2s;
+  }
+
+  .zen-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .zen-card-active {
+    border-left: 3px solid var(--indigo);
+  }
+
+  .zen-card-done {
+    border-left: 3px solid var(--matcha);
+    opacity: 0.75;
+  }
+
+  .zen-card-pending {
+    border-left: 3px solid var(--ink-faint);
+  }
+
+  .zen-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+
+  .zen-badge-running {
+    color: var(--indigo);
+    border-color: var(--indigo-soft);
+    background: var(--indigo-pale);
+  }
+
+  .zen-badge-completed {
+    color: var(--matcha);
+    border-color: var(--matcha);
+    background: var(--matcha-pale);
+  }
+
+  .zen-badge-pending {
+    color: var(--ink-faint);
+    border-color: var(--border-strong);
+    background: transparent;
+  }
+
+  .zen-badge-active {
+    color: var(--indigo);
+    border-color: var(--indigo-soft);
+    background: var(--indigo-pale);
+  }
+
+  .zen-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(44,62,107,0.3); }
+  50% { box-shadow: 0 0 0 6px rgba(44,62,107,0); }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

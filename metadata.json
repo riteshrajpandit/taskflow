@@ -1,0 +1,8 @@
+{
+  "name": "Adaptive Task Orchestrator",
+  "description": "A human + AI task execution system enabling parallel async tasks and sequential focus tasks with dynamic time tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
